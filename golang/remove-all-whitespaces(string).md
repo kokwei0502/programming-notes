@@ -2,7 +2,7 @@
 
 ### Function to remove white spaces and line breaks
 
-```golang
+```go
 package main
 
 import (
@@ -12,22 +12,45 @@ import (
 
 // This is the main function to remove all white spaces
 // including line breaks (still don't understand how to achieve it)
-func removeSpace(s string) string {
-    rr := make([]rune, 0, len(s))
-    for _, r := range s {
-        if !unicode.IsSpace(r) {
-            rr = append(rr, r)
-        }
-    }
-    return string(rr)
-}
+package main
+
+import (
+	"fmt"
+	"unicode"
+)
 
 func main() {
-    s := "I d skd a efju N"
-    fmt.Println(s) // output: I d skd a efju N
-    s = removeSpace(s)
-    fmt.Println(s) // output: IdskdaefjuN
+	str := `ab cd ef gh
+	ijkl  nop
+        			qrs tuv      wx yz`
+	fmt.Println(str)
+    // output :
+    //     ab cd ef gh
+    // ijkl nop
+    // qrs tuv wx yz
+	fmt.Println(removeSpace(str)) // output: abcdefghijklnopqrstuvwxyz
 }
+
+// Still don't know what logic
+func removeSpace(s string) string {
+	rr := make([]rune, 0, len(s))
+	for _, r := range s {
+		if !unicode.IsSpace(r) {
+			rr = append(rr, r)
+		}
+	}
+	return string(rr)
+}
+
+```
+
+output :
+
+```
+ab cd ef gh
+ijkl nop
+qrs tuv wx yz
+abcdefghijklnopqrstuvwxyz
 ```
 
 ### Strings.TrimSpace

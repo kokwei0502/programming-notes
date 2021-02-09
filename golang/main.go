@@ -2,33 +2,23 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"regexp"
+	"unicode"
 )
 
-func check(err error) {
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
+func main() {
+	str := `ab cd ef gh
+	ijkl  nop 
+        			qrs tuv      wx yz`
+	fmt.Println(str)
+	fmt.Println(removeSpace(str))
 }
 
-func main() {
-	emails := []string{
-		"brown@fox",
-		"brown@fox.",
-		"brown@fox.com",
-		"br@own@fox.com",
-	}
-
-	pattern := `^\w+@\w+\.\w+$`
-	for _, email := range emails {
-		matched, err := regexp.Match(pattern, []byte(email))
-		check(err)
-		if matched {
-			fmt.Printf("√ '%s' is a valid email\n", email)
-		} else {
-			fmt.Printf("X '%s' is not a valid email\n", email)
+func removeSpace(s string) string {
+	rr := make([]rune, 0, len(s))
+	for _, r := range s {
+		if !unicode.IsSpace(r) {
+			rr = append(rr, r)
 		}
 	}
+	return string(rr)
 }
