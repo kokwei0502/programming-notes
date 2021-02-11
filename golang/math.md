@@ -1,3 +1,8 @@
+## math
+
+### 3 methods to convert float to designated decimal places
+
+```golang
 package main
 
 import (
@@ -12,13 +17,12 @@ func main() {
 	fmt.Println(math.Round(x*100) / 100) // 12.35 (round to nearest)
 	fmt.Println(math.Ceil(x*100) / 100)  // 12.35 (round up)
 }
+```
 
-func removeSpace(s string) string {
-	rr := make([]rune, 0, len(s))
-	for _, r := range s {
-		if !unicode.IsSpace(r) {
-			rr = append(rr, r)
-		}
-	}
-	return string(rr)
-}
+output :
+
+```
+12.34
+12.35
+12.35
+```
